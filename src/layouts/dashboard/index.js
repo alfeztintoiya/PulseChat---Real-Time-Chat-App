@@ -1,15 +1,43 @@
-import { Box, useTheme } from "@mui/material";
+import { Box, Divider, IconButton, Stack, useTheme } from "@mui/material";
+import { Nav_Buttons } from "../../data/index";
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { Gear } from "phosphor-react";
 
 const DashboardLayout = () => {
 
   const theme = useTheme();
-  console.log(theme);
   return (
     <>
-      <Box sx={{backgroundColor: theme.palette.background.paper, boxShadow: "0px 0px 2px rgba(0,0,0,0.25)" , height: '100vh' , width: 100}} >
+      <Box p={2} sx={{backgroundColor: theme.palette.background.paper, boxShadow: "0px 0px 2px rgba(0,0,0,0.25)" , height: '100vh' , width: 100}} >
 
+        <Stack 
+          direction="column"
+          alignItems={"center"}
+          sx={{width: "100%"}} spacing={2}>
+          <Box sx={{
+            backgroundColor: theme.palette.primary.main,
+            height: 64,
+            width: 64,
+            borderRadius: 1.5
+          }}>
+            <img src='/PULSECHAT.png' alt='Pulse Chat App Logo'/>
+          </Box>
+          
+          <Stack sx={{ width:"max-content"}} direction="column" spacing={3}>
+          {Nav_Buttons.map((el)=>
+            <IconButton>
+              {el.icon}  
+            </IconButton>)}
+          <Divider />
+
+          <IconButton>
+            <Gear/>
+          </IconButton>
+          </Stack>
+
+          
+        </Stack>
       </Box>
       <Outlet />
     </>
